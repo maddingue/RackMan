@@ -1,0 +1,53 @@
+NOTES
+
+Notes pour le futur mainteneur.
+
+- Il s'agit de mon premier gros projet avec DBIx::Class et Moose, donc
+  l'utilisation de ces modules n'est certainement pas optimale.
+
+- Exécuter tools/make_doc pour générer la documentation en HTML dans
+  le répertoire html/ (nécessite le module Pod::Tree). Ce n'est pas
+  révolutionnaire mais ça aide pour voir la documentation disponible.
+
+- IMPORTANT: Les modules DBIx::Class qui implémentent le schéma de
+  RackTables sont générés par DBIx::Class::Schema::Loader, cf. le script
+  tools/schema qui automatise son exécution avec les bons paramètres.
+  Certains modules sont modifiés pour ajouter quelques relations, mais
+  il faut bien faire attention à ne mettre du code que là où on a le
+  droit. Les quelques modules que j'ai écrit de zéro ont tous un nom qui
+  commencent par "view" pour les distinguer plus facilement des autres
+  (et parce qu'il s'agit souvent de requêtes imbriquées).
+
+- Les noms de certaines méthodes ne sont pas géniaux, en particulier les
+  plugins de formats qui doivent exporter une méthode "write". La raison
+  en est qu'au début, on ne pensait vraiment que écrire des fichiers de
+  configuration. Ce n'est qu'après que j'ai vu que cela n'était pas
+  possible pour les serveurs HP (protocole iLO) ou la configuration dans
+  Cacti (exécution des commandes), mais bon..
+
+- RackMan::Format::DHCP, ::PXE et ::Kickstart sont des quasi copiés-collés.
+  J'ai déjà fait une étape de refactoring en mettant une partie du code 
+  commun dans RackMan::Template::populate_from() mais il y a peut-être moyen
+  de faire mieux.
+
+- J'ai commencé un test assez transversal de RackMan dans t/80-rackman.t
+  Toutefois, pour le rendre plus automatique, il faudrait qu'il s'appuie
+  sur une base SQLite plutôt que MySQL. J'ai écris un script pour convertir
+  un dump MySQL de RackTables en SQLite (tools/mysql2sqlite), mais j'ai dû
+  louper des trucs car il manque des données, en particulier des attributs,
+  et en particulier des attributs "HW type" qui sont nécessaires à la
+  composition des rôles d'équipement. Donc forcément, ça marche beaucoup
+  moins bien. J'ai mis les tests qui échouent en TODO pour ne pas être gêné
+  pour le moment.
+
+- RackMan::SCM a été conçu comme un moyen simple pour gérer le versionnement
+  des fichiers sans aller dans la complexité d'un framework comme VCI.
+  Maintenant, c'est peut-être un peu trop simpliste par endroits, et mériterait
+  d'être un peu mieux peaufiné, par exemple tester si le fichier est déjà
+  versionné avant de faire un add() et ainsi éviter des messages d'erreurs
+  disgracieux. Suggestion : capturer les sorties avec IPC::Run et ne les
+  afficher que quand c'est nécessaire ou approprié.
+
+
+Sébastien Aperghis-Tramoni <sebastien@aperghis.net>
+
