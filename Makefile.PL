@@ -75,7 +75,7 @@ sub MY::postamble {
     }
 
     # then, declare the target with the files
-    $postamble .= "\nINSTALL = install -D -p\n\npriv_data_files:\n";
+    $postamble .= "\nINSTALL = install -d -p\n\npriv_data_files:\n";
 
     while (my($file,$target) = each %{ $args{files} }) {
         $postamble .= "\t\$(INSTALL) $file $target\n";
