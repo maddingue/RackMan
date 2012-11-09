@@ -124,12 +124,14 @@ sub task_info {
         }
     }
 
-    print "Ports\n-----\n";
-    printf "  [%s] --(%s)--> %s [%s]\n",
-        $_->{name}, $_->{oif_name},
-        $_->{peer_object_name}||"", $_->{peer_port_name}||""
-        for sort by_port_name @{ $self->ports };
-    print $/;
+    if (@{ $self->ports }) {
+        print "Ports\n-----\n";
+        printf "  [%s] --(%s)--> %s [%s]\n",
+            $_->{name}, $_->{oif_name},
+            $_->{peer_object_name}||"", $_->{peer_port_name}||""
+            for sort by_port_name @{ $self->ports };
+        print $/;
+    }
 
     if ($self->has_ipv4addrs) {
         print "IPv4 addresses\n--------------\n";
