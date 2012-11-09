@@ -1,5 +1,7 @@
 Release history for RackMan
 
+  - Better support for VMs.
+
 1.10 / 2012.11.08 / SAPER
   - cfengine-tags: Support for device filtering on tags and attributes.
   - The HP_ProLiant role now provides an ilo_name template parameter, an

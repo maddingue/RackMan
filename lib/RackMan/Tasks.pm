@@ -100,6 +100,12 @@ sub task_info {
     print $/;
 
     print "Location\n--------\n";
+
+    if (my ($parent_id) = @{ $self->parents }) {
+        my $parent = $self->rackman->device_by_id($parent_id);
+        print "  host: ", $parent->object_name, $/;
+    }
+
     print "  rack: ", $self->rack->{name}, $/,
           "  site: ", $self->rack->{row_name}, $/;
     print $/;

@@ -112,6 +112,13 @@ has default_ipv4_gateway => (
     builder => "_get_default_ipv4_gateway",
 );
 
+has parents => (
+    is => "ro",
+    isa => "ArrayRef",
+    lazy => 1,
+    builder => "_get_parents",
+);
+
 has rack => (
     is => "ro",
     isa => "HashRef",
@@ -481,14 +488,38 @@ sub get_network {
 
 
 #
+# _get_parents()
+# ------------
+sub _get_parents {
+    my ($self) = @_;
+
+    my $parents = $self->racktables->resultset("EntityLink")->search(
+        { child_entity_type => "object", child_entity_id => $self->object_id }
+    );
+
+    my @parents = map $_->parent_entity_id, $parents->all;
+
+    return \@parents
+}
+
+
+#
 # _get_rack()
 # ---------
 sub _get_rack {
     my $self = shift;
 
+    my $object_id = $self->object_id;
+
+    # check if this is a VM or a blade. in that case, we must find
+    # the ID of the parent
+    if (my @parents = @{ $self->parents }) {
+        ($object_id) = @parents;
+    }
+
     # find associated rack
     my $rack = $self->racktables->resultset("viewRack")->search(
-        {}, { bind => [ $self->object_id ] },
+        {}, { bind => [ $object_id ] },
     )->first;
 
     my %rack = (
@@ -768,6 +799,11 @@ C<peer_object_id> - integer, peer object ID
 C<peer_object_name> - string, peer object name
 
 =back
+
+
+=head2 parents
+
+Arrayref, contains the object ID of the parents
 
 
 =head2 rack
