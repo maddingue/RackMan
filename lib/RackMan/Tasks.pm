@@ -229,7 +229,7 @@ sub task_write {
 
     my $verbose = $opts->{rackman}->options->{verbose};
 
-    if ($self->class) {
+    if ($self->class and not $opts->{rackman}->options->{no_write_dev_cfg}) {
         # invoke the write_config() method, which should be provided by
         # the appropriate device role (RackMan::Device::*)
         my ($type) = $self->class =~ /::(\w+)$/;

@@ -44,7 +44,8 @@ sub run {
     GetOptions(\%options, qw{
         help|usage|h!  man!  version|V!
         verbose|v!  config|c=s  scm|S!
-        formats|F=s
+        formats|F=s  only_formats|only-formats|G=s
+        no_write_dev_cfg|no-write-device-config
         device_login|device-login=s  device_password|device-password=s
         read_community|read-community=s  write_community|write-community=s
         dhcp_template|dhcp-template=s
@@ -59,6 +60,12 @@ sub run {
 
     # if there's no argument, print the usage
     pod2usage(1) if @ARGV == 0;
+
+    # handle some specific options
+    if ($options{only_formats}) {
+        $options{formats} = $options{only_formats};
+        $options{no_write_dev_cfg} = 1;
+    }
 
     # read configuration file
     my $config = RackMan::Config->new(-file => $options{config});
@@ -129,7 +136,7 @@ Specify an alternate password for connecting onto the device.
 
 Specify an alternate template path for RackMan::Format::DHCP.
 
-=item B<-F>, B<--formats>
+=item B<-F>, B<--formats> I<list of formats>
 
 Specify a comma-separated list of formats, overriding the corresponding
 C<[device:*]/formats> parameters in F<rack.conf>
@@ -137,6 +144,14 @@ C<[device:*]/formats> parameters in F<rack.conf>
 =item B<--ks>, B<--kickstart-template> I<path>
 
 Specify an alternate template path for RackMan::Format::Kickstart.
+
+=item B<--no-write-device-config>
+
+Do not write the device specific file of the given RackObject.
+
+=item B<-G>, B<--only-formats> I<list of formats>
+
+Alias for the C<--formats> and C<--no-write-device-config> options.
 
 =item B<--pxe-template> I<path>
 
