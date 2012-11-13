@@ -28,8 +28,9 @@ sub formats {
     my ($self) = @_;
 
     # fetch the list of formats for this type
-    my @formats = split / +/, $self->rackman->config->val(
-        CONFIG_SECTION, "formats", DEFAULT_FORMATS);
+    my $rackman = $self->rackman;
+    my @formats = split / *,? +/, $rackman->options->{formats}
+        || $rackman->config->val(CONFIG_SECTION, "formats", DEFAULT_FORMATS);
 
     return @formats
 }
@@ -103,7 +104,8 @@ of the main F<rack.conf>, with the following parameters:
 =item *
 
 C<formats> - specify the formats associated with a Server object as a
-space seperated list. Default is C<"DHCP PXE Kickstart Cacti Nagios Bacula">
+comma or space seperated list. Can be overridden with the C<--formats>
+option. Default is C<"DHCP PXE Kickstart Cacti Nagios Bacula">
 
 =back
 
