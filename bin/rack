@@ -48,6 +48,7 @@ sub run {
         no_write_dev_cfg|no-write-device-config
         device_login|device-login=s  device_password|device-password=s
         read_community|read-community=s  write_community|write-community=s
+        template|t=s  output|o=s
         dhcp_template|dhcp-template=s
         kickstart_template|kickstart-template|ks=s
         pxe_template|pxe-template=s
@@ -153,6 +154,10 @@ Do not write the device specific file of the given RackObject.
 
 Alias for the C<--formats> and C<--no-write-device-config> options.
 
+=item B<-o>, B<--output> I<path>
+
+Specify the path of the output file for the Generic format.
+
 =item B<--pxe-template> I<path>
 
 Specify an alternate template path for RackMan::Format::PXE.
@@ -165,6 +170,10 @@ Specify an alternate SNMP read community.
 
 Use a SCM program to version generated files.
 Enabled by default (use C<--no-scm> to disable).
+
+=item B<-t>, B<--template> I<path>
+
+Specify the path of the template file for the Generic format.
 
 =item B<--write-community> I<community>
 

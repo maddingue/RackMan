@@ -1,6 +1,7 @@
 Release history for RackMan
 
-  - Add the --formats, --no-write-device-config and --only-formats options.
+  - Add the --formats, --no-write-device-config, --only-formats, --output
+    and --template options.
   - Better support for VMs.
 
 1.10 / 2012.11.08 / SAPER
