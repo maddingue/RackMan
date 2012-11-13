@@ -127,7 +127,7 @@ Specify an alternate password for connecting onto the device.
 
 =item B<--dhcp-template> I<path>
 
-Specify an alternate template path for Device::Format::DHCP.
+Specify an alternate template path for RackMan::Format::DHCP.
 
 =item B<-F>, B<--formats>
 
@@ -136,11 +136,11 @@ C<[device:*]/formats> parameters in F<rack.conf>
 
 =item B<--ks>, B<--kickstart-template> I<path>
 
-Specify an alternate template path for Device::Format::Kickstart.
+Specify an alternate template path for RackMan::Format::Kickstart.
 
 =item B<--pxe-template> I<path>
 
-Specify an alternate template path for Device::Format::PXE.
+Specify an alternate template path for RackMan::Format::PXE.
 
 =item B<--read-community> I<community>
 
