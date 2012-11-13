@@ -1,5 +1,6 @@
 Release history for RackMan
 
+  - Add the --formats option.
   - Better support for VMs.
 
 1.10 / 2012.11.08 / SAPER

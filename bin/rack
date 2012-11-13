@@ -44,6 +44,7 @@ sub run {
     GetOptions(\%options, qw{
         help|usage|h!  man!  version|V!
         verbose|v!  config|c=s  scm|S!
+        formats|F=s
         device_login|device-login=s  device_password|device-password=s
         read_community|read-community=s  write_community|write-community=s
         dhcp_template|dhcp-template=s
@@ -127,6 +128,11 @@ Specify an alternate password for connecting onto the device.
 =item B<--dhcp-template> I<path>
 
 Specify an alternate template path for Device::Format::DHCP.
+
+=item B<-F>, B<--formats>
+
+Specify a comma-separated list of formats, overriding the corresponding
+C<[device:*]/formats> parameters in F<rack.conf>
 
 =item B<--ks>, B<--kickstart-template> I<path>
 
