@@ -27,6 +27,7 @@ my @modules = qw<
     RackMan::Types
     RackMan::Utils
     RackTables::Schema
+    RackTables::Types
 >;
 
 plan tests => ~~@modules;
