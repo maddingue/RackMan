@@ -26,6 +26,7 @@ lib/RackMan/File.pm
 lib/RackMan/Format/Bacula.pm
 lib/RackMan/Format/Cacti.pm
 lib/RackMan/Format/DHCP.pm
+lib/RackMan/Format/Generic.pm
 lib/RackMan/Format/Kickstart.pm
 lib/RackMan/Format/LDAP.pm
 lib/RackMan/Format/Nagios.pm

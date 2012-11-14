@@ -1,6 +1,7 @@
 Release history for RackMan
 
-  - Add the --formats, --no-write-device-config, --only-formats, --output
+  - Added the Generic format.
+  - Added the --formats, --no-write-device-config, --only-formats, --output
     and --template options.
   - Better support for VMs.
 
