@@ -94,7 +94,8 @@ sub val {
     my ($value, @values) = ("");
 
     # if no default is given, check if we have one
-    $default = $defaults{$section}{$parameter} unless defined $default;
+    $default = $defaults{$section}{$parameter}
+        if not defined $default and exists $defaults{$section};
 
     # propagate context up to Config::IniFiles object
     if (wantarray) {
