@@ -17,6 +17,7 @@ my @modules = qw<
     RackMan::Format::Bacula
     RackMan::Format::Cacti
     RackMan::Format::DHCP
+    RackMan::Format::Generic
     RackMan::Format::Kickstart
     RackMan::Format::LDAP
     RackMan::Format::Nagios
