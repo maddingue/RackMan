@@ -157,6 +157,7 @@ sub process {
                 ATTR:
                 for my $name (keys %{ $filter{attr} }) {
                     for my $value (@{ $filter{attr}{$name} }) {
+                        next unless exists $attr{$name} and defined $attr{$name};
                         $keep ||= $value eq $attr{$name};
                         last ATTR if $keep;
                     }
