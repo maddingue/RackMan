@@ -1,5 +1,6 @@
 Release history for RackMan
 
+1.11 / 2012.11.14 / SAPER
   - Added the Generic format.
   - Added the --formats, --no-write-device-config, --only-formats, --output
     and --template options.
