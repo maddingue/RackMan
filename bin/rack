@@ -314,6 +314,17 @@ Only write the DHCP file for "front01.example.com":
 
     rack write -G DHCP frontal01.example.com
 
+Process the template F<input.tmpl> with the information about
+"front01.example.com" and print the result on screen:
+
+    rack write -G Generic -t input.tmpl frontal01.example.com
+
+Process the template F<input.tmpl> with the information about
+"front01.example.com" and write the result on disk, in a file
+named after the device:
+
+    rack write -G Generic -t input.tmpl -o %name%.conf frontal01.example.com
+
 
 =head1 CONFIGURATION
 
