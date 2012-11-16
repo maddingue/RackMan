@@ -17,6 +17,11 @@ $::VERSION = "1.03";
 $::COMMAND = basename($0);
 
 
+use constant {
+    CONFIG_SECTION  => "cfengine-tags",
+};
+
+
 #
 # main
 #
@@ -58,14 +63,14 @@ sub run {
     my $config = RackMan::Config->new(-file => $options{config});
 
     # check for mandatory parameters
-    RackMan->error("missing config parameter [cfengine-tags]/path")
-        if not $config->val("cfengine-tags", "path");
+    RackMan->error("missing config parameter [".CONFIG_SECTION."]/path")
+        if not $config->val(CONFIG_SECTION, "path");
 
     # instanciate the backend object
     my $rackman = RackMan->new({ options => \%options, config => $config });
 
     # do the actual work
-    push @ARGV, $config->val("cfengine-tags", "type", "server") if not @ARGV;
+    push @ARGV, $config->val(CONFIG_SECTION, "type", "server") if not @ARGV;
     process($rackman, @ARGV);
 }
 
@@ -88,18 +93,18 @@ sub process {
 
     # construct the list of wanted tags, if any
     my $tags_list = $rackman->options->{tags}
-            || $rackman->config->val("cfengine-tags", "tags", "");
+            || $rackman->config->val(CONFIG_SECTION, "tags", "");
     $tags_list =~ s/^ +| +$//g;
     my %wanted_tag = map { $_ => 1 } split / *, */, $tags_list;
 
     # construct the list of wanted attributes, if any
     my @attrs = split / *, */, $rackman->options->{attrs}
-            || $rackman->config->val("cfengine-tags", "attrs", "");
+            || $rackman->config->val(CONFIG_SECTION, "attrs", "");
 
     # construct the filter
     my %filter;
     my $filter = $rackman->options->{filter}
-            || $rackman->config->val("cfengine-tags", "filter", "");
+            || $rackman->config->val(CONFIG_SECTION, "filter", "");
     if ($filter) {
         for my $token (split / *, */, $filter) {
             if (index($token, "tag:") == 0) {
@@ -192,7 +197,7 @@ sub process {
     }
 
     # write the tags files
-    my $dir = $rackman->config->val("cfengine-tags", "path");
+    my $dir = $rackman->config->val(CONFIG_SECTION, "path");
     mkpath $dir;
 
     for my $tag (keys %devices_by_tag) {
