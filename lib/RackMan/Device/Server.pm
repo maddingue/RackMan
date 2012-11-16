@@ -61,6 +61,12 @@ sub specialise {
 }
 
 
+#
+# has_ilo()
+# -------
+sub has_ilo { 0 }
+
+
 __PACKAGE__
 
 __END__
