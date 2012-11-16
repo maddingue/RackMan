@@ -1,5 +1,6 @@
 Release history for RackMan
 
+1.12 / 2012.11.16 / SAPER
   - Add a default has_ilo value for Server objects.
   - Better support for VMs.
   - cfengine-tags: Avoid a warning when an attribute is missing.
