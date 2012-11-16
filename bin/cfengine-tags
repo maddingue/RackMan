@@ -173,7 +173,7 @@ sub process {
         }
 
         # fetch the FQDN of this RackObject
-        my $fqdn = $rackdev->attributes->{FQDN};
+        my $fqdn = $attr{FQDN};
         RackMan->warning("RackObject '$device->{name}' lacks a FQDN")
             and next unless $fqdn;
 
