@@ -3,6 +3,7 @@ Release history for RackMan
 1.12 / 2012.11.16 / SAPER
   - Added a default has_ilo value for Server objects.
   - The Server role now provides a has_ilo template parameter.
+  - The HP_ProLiant role now provides an ilo_fqdn template parameter.
   - Better support for VMs.
   - cfengine-tags: Avoid a warning when an attribute is missing.
 

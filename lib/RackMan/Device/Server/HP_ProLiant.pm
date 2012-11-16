@@ -332,6 +332,7 @@ around tmpl_params => sub {
 
     my %params = (
         $self->$orig,
+        ilo_fqdn    => $ilo_fqdn,
         ilo_name    => $ilo_name,
         ilo_ip      => $ilo_ipv4addr[0]{addr},
         ilo_mac     => $ilo_mac_addr[0]{l2address_text},
@@ -420,6 +421,10 @@ Return the IPv4 address of the iLO subsystem
 This role provides the following additional template parameters:
 
 =over
+
+=item *
+
+C<ilo_fqdn> - FQDN of the iLO subsystem
 
 =item *
 
