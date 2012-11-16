@@ -303,8 +303,8 @@ sub push_config {
 #
 # tmpl_params()
 # -----------
-sub tmpl_params {
-    my ($self) = @_;
+around tmpl_params => sub {
+    my ($orig, $self) = @_;
 
     my $name = $self->object_name;
 
@@ -331,6 +331,7 @@ sub tmpl_params {
     my $ilo_netmask = $iaddr->mask;
 
     my %params = (
+        $self->$orig,
         ilo_name    => $ilo_name,
         ilo_ip      => $ilo_ipv4addr[0]{addr},
         ilo_mac     => $ilo_mac_addr[0]{l2address_text},
@@ -340,7 +341,7 @@ sub tmpl_params {
     );
 
     return %params
-}
+};
 
 
 

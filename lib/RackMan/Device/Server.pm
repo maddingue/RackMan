@@ -67,6 +67,16 @@ sub specialise {
 sub has_ilo { 0 }
 
 
+#
+# tmpl_params()
+# -----------
+sub tmpl_params {
+    my ($self) = @_;
+    my %params = ( has_ilo => $self->has_ilo );
+    return %params;
+}
+
+
 __PACKAGE__
 
 __END__
@@ -98,6 +108,30 @@ type of object.
 
 Apply a specialised role, if available, to the object so it can know
 how to speak with the actual hardware, if needed.
+
+
+=head2 has_ilo
+
+Indicates whether the server has an iLO subsystem.
+
+
+=head2 tmpl_params
+
+Return a hash of additional template parameters.
+See L<"TEMPLATE PARAMETERS">
+
+
+=head1 TEMPLATE PARAMETERS
+
+This role provides the following additional template parameters:
+
+=over
+
+=item *
+
+C<has_ilo> - indicates whether the server has an iLO subsystem
+
+=back
 
 
 =head1 CONFIGURATION
