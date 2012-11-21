@@ -2,7 +2,6 @@ package RackMan::Format::Generic;
 
 use strict;
 use Carp;
-use File::Basename;
 use RackMan::File;
 use RackMan::Template;
 
@@ -41,8 +40,7 @@ sub write {
     # write the output file
     if ($fullpath) {
         # ... on disk
-        $output->name(basename($fullpath));
-        $output->path(dirname ($fullpath));
+        $output->name($fullpath);
         print "  + writing ", $output->fullpath, $/ if $args->{verbose};
         my $scm = $rackman->get_scm({ path => $output->path });
         $scm->update;
