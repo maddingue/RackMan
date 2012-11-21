@@ -8,6 +8,7 @@ my %programs = (
     rack            => "RackManager",
    "cisco-status"   => "Cisco switch status",
    "cfengine-tags"  => "Cfengine tags generator",
+   "bin/racktables-check"   => "RackTables consistency check",
 );
 
 plan tests => 6 * keys %programs;

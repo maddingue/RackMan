@@ -8,6 +8,7 @@ Changes
 bin/cfengine-tags
 bin/cisco-status
 bin/rack
+bin/racktables-check
 cgi/rackapi
 cgi/rtlink
 etc/host.dhcp.conf.tmpl
