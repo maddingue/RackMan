@@ -1,5 +1,6 @@
 Release history for RackMan
 
+  - A small change in RackMan::File allows for a simpler use in some cases.
   - Added RackMan::Device::VM to improve support for VMs.
   - cfengine-tags: Small optimisation.
 
