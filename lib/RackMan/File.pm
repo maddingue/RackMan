@@ -29,7 +29,7 @@ has content => (
 # --------
 sub fullpath {
     my $self = shift;
-    my $file = file($self->path, $self->name);
+    my $file = file(grep length, $self->path, $self->name);
     return "$file"
 }
 
