@@ -13,6 +13,7 @@ my @modules = qw<
     RackMan::Device::Server::HP_ProLiant
     RackMan::Device::Switch
     RackMan::Device::Switch::Cisco_Catalyst
+    RackMan::Device::VM
     RackMan::File
     RackMan::Format::Bacula
     RackMan::Format::Cacti

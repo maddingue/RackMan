@@ -22,6 +22,7 @@ lib/RackMan/Device/Server/HP_ProLiant.pm
 lib/RackMan/Device/Server.pm
 lib/RackMan/Device/Switch/Cisco_Catalyst.pm
 lib/RackMan/Device/Switch.pm
+lib/RackMan/Device/VM.pm
 lib/RackMan/File.pm
 lib/RackMan/Format/Bacula.pm
 lib/RackMan/Format/Cacti.pm
