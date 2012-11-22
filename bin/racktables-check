@@ -434,7 +434,9 @@ Print the program name and version, then exit.
 
 =head1 DESCRIPTION
 
-This program ...
+This program is a small consistency checking engine for RackTables objects.
+You can control what to check and how by defining rules in the configuration
+file.
 
 
 =head1 CONFIGURATION
@@ -462,20 +464,103 @@ interface (a "port", in RackTables terminology) with the same name
 
 =head1 RULES SYNTAX
 
+The general syntax of a rule is:
+
+    [selector] property-name operator operand
+
+The B<I<property-name>> is the only mandatory part. It defines the RackObject
+property (in a very broad sense of the term) to check. Valid properties are:
+
+=over
+
+=item *
+
+any RackTables attribute, written as C<attr:I<name>>
+
+=item *
+
+any L<RackMan::Device> attribute, like C<object_name> or C<object_type>
+
+=item *
+
+C<addresses>, C<addrs> or C<ipv4_addrs> return the list
+
+=item *
+
+C<gateway> returns the IP address, in quad form, of the default IPv4 gateway
+
+=item *
+
+C<interfaces> returns the list of the names of the regular network interfaces
+
+=item *
+
+C<mac_addrs> returns the list of the MAC addresses (as a big hex number,
+not colon-separated)
+
+=back
+
+When a property returns a list of values, the rule simply is applied to
+each value. In case of failure, the value is indicated in the message.
+
+The B<I<selector>> makes the rule only check objects corresponding to the
+given criterion, written as C<[I<property-name>=I<value>]>. valid properties
+are the same as in the main part of the rule. Multiple values can be given
+by separating them with a pipe (C<|>).
+
+For example, C<[type=Server]> selects only the servers, C<[type=PDU|Switch]>
+selects both PDUs and switches. C<[attr:Use=prod]> selects objects with the
+attribute C<Use> set to C<prod>.
+
+The B<I<operator>> and I<operand> defines the check operation. If none is
+given, the property is checked to have a defined value. Valid operators are:
+
+=over
+
+=item *
+
+C<=> - check for equality against the value given in operand
+
+=item *
+
+C<~> - check for matching against the pattern given in operand; the pattern
+follows usual Perl regular expression syntax and must be bounded in slashes
+(C</.../>); flags, like C</i>, are also recognized.
+
+=item *
+
+C<%> - check with a function call, whose name is given as operand; currently
+available check functions are:
+
+=over
+
+=item *
+
+C<check_dns> - for a given name, checks that it can be resolved, that the
+resulting IP address can be reverse resolved, and that the resulting name
+is the same as the one originally given. For example, C<attr:FQDN % check_dns>
+applys this check function to the C<FQDN> attribute.
+
+=back
+
+=back
+
+B<Note:> To keep the code simple, all names and values in the rules are
+case I<sensitive>, and must match the way they are entered in RackTables.
 
 
-=head1 EXAMPLE
+=head1 EXAMPLES
 
-  [racktables-check]
-  enforce_interface_match = 1
-  rule = attr:Use
-  rule = attr:HW type
-  rule = attr:SW type
-  rule = [type=PDU|Switch] attr:SW version
-  rule = [type=Server] attr:FQDN %check_dns
-  rule = [type=Server] gateway
-  rule = [type=Server] addresses
-  rule = [type=Server] interfaces ~ /(bce|bge|em|eth|fxp|lagg|re|vlan|xl)\d+/
+This set of rules makes sure that most network properties of servers are
+correctly defined. It only assumes that servers have a C<FQDN> attribute
+which contains, obviously, their FQDN:
+
+    [racktables-check]
+    enforce_interface_match = 1
+    rule = [type=Server] attr:FQDN %check_dns
+    rule = [type=Server] gateway
+    rule = [type=Server] addresses
+    rule = [type=Server] interfaces ~ /(bce|bge|em|eth|fxp|lagg|re|vlan|xl)\d+/
 
 
 =head1 AUTHOR
