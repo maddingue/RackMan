@@ -206,7 +206,7 @@ sub process {
         for my $rule (@rules) {
             # apply selector filter, if any
             if (exists $rule->{selector}) {
-                my $propval  = property_value($rackdev, $rule->{selector});
+                my $propval = property_value($rackdev, $rule->{selector}) || "";
                 next RULE unless $rule->{selector}{propval}{$propval};
             }
 
