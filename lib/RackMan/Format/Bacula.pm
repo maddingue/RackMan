@@ -187,6 +187,8 @@ Bacula parameter C<Maximum Concurrent Jobs>.
 
 =head2 write_bootstrap
 
+Bacula parameter C<Write Bootstrap>.
+
 =head2 add_file
 
 Add the given path to the FileSet.
