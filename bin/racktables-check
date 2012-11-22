@@ -539,7 +539,7 @@ available check functions are:
 C<check_dns> - for a given name, checks that it can be resolved, that the
 resulting IP address can be reverse resolved, and that the resulting name
 is the same as the one originally given. For example, C<attr:FQDN % check_dns>
-applys this check function to the C<FQDN> attribute.
+applies this check function to the C<FQDN> attribute.
 
 =back
 
