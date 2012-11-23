@@ -1,5 +1,6 @@
 Release history for RackMan
 
+  - cfengine-tags: Now create the files with fully qualified tag names.
   - Added a new RackMan::Device attribute, tag_tree.
   - RackMan::Device's implicit_tags attribute now returns all the parent tags.
   - Added bin/racktables-check.

@@ -185,9 +185,36 @@ sub process {
         # mogrify it for Cfengine
         $fqdn =~ s/[-.]/_/g;
 
+
+        # to avoid conflicts, construct a mapping of each tag to its 
+        # "fully qualified name", which includes the parent tags
+        my (%tag_path, @comps);
+
+        # (private function to linearize the tag tree)
+        my $walk; $walk = sub {
+            my ($node) = @_;
+
+            if (keys %$node) {
+                for my $tag (keys %$node) {
+                    push @comps, $tag;
+                    $walk->($node->{$tag});
+                    pop @comps;
+                }
+            }
+            else {
+                $tag_path{$comps[0]} = join "_", reverse @comps;
+            }
+        };
+
+        $walk->($rackdev->tag_tree);
+
+        # post-process: lowercase, remove non-word chars
+        %tag_path = map { s/\W+/_/g; $_ } map lc, %tag_path;
+
+
         # associate the FQDN to each corresponding tag
         for my $tag (@tags) {
-            push @{ $devices_by_tag{$tag} }, $fqdn;
+            push @{ $devices_by_tag{$tag_path{$tag} || $tag} }, $fqdn;
         }
 
         # also associate the FQDN to each requested attribute
