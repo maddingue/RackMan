@@ -76,6 +76,13 @@ has implicit_tags => (
     builder => "_get_implicit_tags",
 );
 
+has tag_tree => (
+    is => "ro",
+    isa => "HashRef",
+    lazy => 1,
+    builder => "_get_tag_tree",
+);
+
 has ports => (
     is => "ro",
     isa => "ArrayRef[HashRef]",
@@ -306,6 +313,32 @@ sub _get_implicit_tags {
     }
 
     return \@implicit_tags
+}
+
+
+#
+# _get_tag_tree()
+# -------------
+sub _get_tag_tree {
+    my $self = shift;
+
+    # fetch object tags
+    my $tags_rs = $self->racktables->resultset("TagTree")->search(
+        { entity_realm => "object", entity_id => $self->object_id },
+        { join => "tag_storages" },
+    );
+
+    # reconstruct the tag tree as a hash of hashes
+    my %tag_tree;
+    for my $tag ($tags_rs->all) {
+        my $node = $tag_tree{$tag->tag} ||= {};
+
+        while ($tag = $tag->parent) {
+            $node = $node->{$tag->tag} ||= {};
+        }
+    }
+
+    return \%tag_tree
 }
 
 
@@ -862,6 +895,11 @@ List of the regular IPv4 addresses of the device
 =head2 regular_ipv6addrs
 
 List of the regular IPv6 addresses of the device
+
+
+=head2 tag_tree
+
+Hashref, contains the tree of tags, with the explicit tags at first level
 
 
 =head1 SEE ALSO
