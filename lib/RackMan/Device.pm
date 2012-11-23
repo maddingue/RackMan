@@ -296,7 +296,14 @@ sub _get_implicit_tags {
         { entity_realm => "object", entity_id => $self->object_id },
         { join => "tag_storages" },
     );
-    my @implicit_tags = map { eval { $_->parent->tag } } $tags_rs->all;
+
+    # for each tag, find all its parent tags
+    my @implicit_tags;
+    for my $tag ($tags_rs->all) {
+        while ($tag = $tag->parent) {
+            push @implicit_tags, $tag->tag;
+        }
+    }
 
     return \@implicit_tags
 }
