@@ -39,7 +39,7 @@ sub write {
         "Client {\n",
         "    Name = $short-fd\n",
         "    Address = $fqdn\n",
-        "    FDPort = 9102\n"                       x!! $fdport,
+        "    FDPort = $fdport\n"                    x!! $fdport,
         "    Catalog = $catalog\n",
         "    Password = \"$password\"\n",
         "    File Retention = $file_ret\n"          x!! $file_ret,
