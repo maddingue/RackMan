@@ -1,6 +1,8 @@
 Release history for RackMan
 
   - cfengine-tags: Added option --output-path.
+  - RackMan::Device's regular_mac_addrs() now only returns ports with
+    a defined MAC address.
   - Fixed a stupid bug in the RackMan::Format::Bacula.
 
 1.13 / 2012.11.23 / SAPER

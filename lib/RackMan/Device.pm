@@ -377,9 +377,10 @@ sub _get_ports {
 # regular_mac_addrs()
 # -----------------
 sub regular_mac_addrs {
-    return map {
-        $_->{name} =~ /^(?:PWR\d|ilo)$/i ? () : $_
-    } @{ $_[0]->ports }
+    return
+        grep { $_->{name} !~ /^(?:PWR\d+|areca|ipmi|ilo)$/i }
+        grep { defined $_->{l2address} and length $_->{l2address} }
+        @{ $_[0]->ports }
 }
 
 
