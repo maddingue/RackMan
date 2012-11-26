@@ -50,7 +50,7 @@ sub run {
     Getopt::Long::Configure(qw< no_auto_abbrev no_ignore_case >);
     GetOptions(\%options, qw{
         help|usage|h!  man!  version|V!
-        verbose|v!  config|c=s
+        verbose|v!  config|c=s  output-path|path|O=s
         attrs|A=s  tags|T=s  filter|F=s
     }) or pod2usage(0);
 
@@ -224,7 +224,8 @@ sub process {
     }
 
     # write the tags files
-    my $dir = $rackman->config->val(CONFIG_SECTION, "path");
+    my $dir = $rackman->options->{"output-path"}
+           || $rackman->config->val(CONFIG_SECTION, "path");
     mkpath $dir;
 
     for my $tag (keys %devices_by_tag) {
@@ -263,6 +264,11 @@ cfengine-tags - Generate tags files for Cfengine
 
 Specify the path to the configuration file.
 Default to F</usr/local/etc/rack.conf>
+
+=item B<-O>, B<--path>, B<--output-path> I<path>
+
+Specify the path where to write the tags files. This option overrides
+the C<[cfengine-tags]/path> config parameter.
 
 =item B<-v>, B<--verbose>
 
@@ -344,7 +350,8 @@ with the following additional definitions.
 
 =item *
 
-C<path> - specify the path where to write the tags files
+C<path> - specify the path where to write the tags files;
+will be overridden by the C<--output-path> option
 
 =item *
 
