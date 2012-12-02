@@ -102,6 +102,7 @@ lib/RackTables/Schema/Result/VLANSwitch.pm
 lib/RackTables/Schema/Result/VLANSwitchTemplate.pm
 lib/RackTables/Schema/Result/VLANValidID.pm
 lib/RackTables/Types.pm
+pod/RackMan/Manual.fr.pod
 t/00-load.t
 t/01-api.t
 t/01-programs.t
