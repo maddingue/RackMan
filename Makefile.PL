@@ -15,7 +15,8 @@ WriteMakefile(
     VERSION_FROM        => 'lib/RackMan.pm',
     ABSTRACT_FROM       => 'lib/RackMan.pm',
     EXE_FILES           => [
-        'bin/rack', 'bin/cfengine-tags', 'bin/cisco-status'
+        'bin/rack', 'bin/cfengine-tags', 'bin/cisco-status',
+        'bin/racktables-check'
     ],
     PREREQ_PM => {
         # prereqs
