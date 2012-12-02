@@ -1,6 +1,4 @@
 MANIFEST
-META.yml
-META.json
 Makefile.PL
 Build.PL
 README
