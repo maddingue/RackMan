@@ -374,8 +374,6 @@ sub check_dns {
 
 __END__
 
-=pod
-
 =head1 NAME
 
 racktables-check - Perform various consistency checks on RackTables objects

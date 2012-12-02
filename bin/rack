@@ -93,8 +93,6 @@ sub pod2usage {
 
 __END__
 
-=pod
-
 =head1 NAME
 
 rack - Fetch information and generate config files for RackObjects

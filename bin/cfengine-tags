@@ -242,8 +242,6 @@ sub process {
 
 __END__
 
-=pod
-
 =head1 NAME
 
 cfengine-tags - Generate tags files for Cfengine

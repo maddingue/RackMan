@@ -329,8 +329,6 @@ sub parse_interfaces_status {
 
 __END__
 
-=pod
-
 =head1 NAME
 
 cisco-status - Display the status of a Cisco network switch
