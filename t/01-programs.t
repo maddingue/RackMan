@@ -15,7 +15,8 @@ plan tests => 6 * keys %programs;
 
 for my $command (sort keys %programs) {
     my $program = $programs{$command};
-    my $cmdpath = catfile("bin", $command);
+    my $cmdpath = -d "blib" ? catfile("blib", "script", $command)
+                            : catfile("bin", $command);
 
     my $cmd = Test::Cmd->new(prog => $cmdpath, workdir => "");
     ok( $cmd, "created Test::Cmd object for $command" );
