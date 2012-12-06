@@ -19,7 +19,7 @@ like $@, qr/^Attribute \(type\) is required/,
     "check that attribute type is required";
 
 eval { RackMan::SCM->new(type => "plonk") };
-like $@, qr/^Attribute \(type\) does not pass the type constraint because: Validation failed for 'ScmType' with value plonk/,
+like $@, qr/^Attribute \(type\) does not pass the type constraint because: Validation failed for 'ScmType' with value "?plonk"?/,
     "check that attribute type must be within ScmType";
 
 SKIP: {
