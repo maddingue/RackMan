@@ -161,7 +161,7 @@ sub get_scm {
 # -------
 sub warning {
     my $class = shift;
-    warn "$::COMMAND: ", BOLD(YELLOW("warning: ")), @_, "\n";
+    warn "$::COMMAND: ", BOLD(YELLOW("warning: ")), @_, RESET, "\n";
 }
 
 
@@ -170,7 +170,7 @@ sub warning {
 # -----
 sub error {
     my $class = shift;
-    warn "$::COMMAND: ", BOLD(RED("error: ")), @_, "\n";
+    warn "$::COMMAND: ", BOLD(RED("error: ")), @_, RESET, "\n";
     exit ($STATUS || 1);
 }
 
