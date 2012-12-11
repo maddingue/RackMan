@@ -226,17 +226,17 @@ L<RackTables|http://racktables.org/> database. The distribution
 also includes some commands that show how to use the RackMan API.
 
 =over 
-    
+
 =item *
 rack is a program that generates the configuration files for the
 given RackObject, and talk with the corresponding devices to set
 them up accordingly.
-    
+
 =item *
 cisco-status is a program that connects to a Cisco switch to list
 the devices connected to it, with additionnal information resolved
 from RackTables.
-    
+
 =item *
 cfengine-tags is a program that generates tag files for Cfengine.
 
