@@ -208,7 +208,7 @@ __END__
 
 =head1 NAME
 
-RackMan - Main backend module
+RackMan - Main interface for accessing a RackTables database
 
 =head1 SYNOPSIS
 
@@ -221,8 +221,37 @@ RackMan - Main backend module
 
 =head1 DESCRIPTION
 
-This module provides a simple interface to access and fetch information
-about RackObjects from the RackTables database.
+RackMan is a set of Perl modules for fetching information from a
+L<RackTables|http://racktables.org/> database. The distribution
+also includes some commands that show how to use the RackMan API.
+
+=over 
+    
+=item *
+rack is a program that generates the configuration files for the
+given RackObject, and talk with the corresponding devices to set
+them up accordingly.
+    
+=item *
+cisco-status is a program that connects to a Cisco switch to list
+the devices connected to it, with additionnal information resolved
+from RackTables.
+    
+=item *
+cfengine-tags is a program that generates tag files for Cfengine.
+
+=back
+    
+A technical presentation of this software was made at the French
+Perl Workshop 2012: L<http://maddingue.org/conferences/fpw-2012/rackman/>
+
+Note: This software was written to perform very specific tasks.
+Although it was tried to keep it generic, it certainly isn't, and
+the documentation is very rough. There's a more comprehensive
+tutorial (only in French for now) in pod/RackMan/Manual.fr.pod
+
+This C<RackMan> module provides the main interface for accessing a
+RackTables database.
 
 
 =head1 METHODS
