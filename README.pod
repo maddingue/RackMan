@@ -6,8 +6,8 @@ RackMan - Perl modules for connecting to a RackTables database
 =head1 DESCRIPTION
 
 RackMan is a set of Perl modules for fetching information from a
-RackTables database. The distribution also includes some commands
-that show how to use the RackMan API.
+L<RackTables|http://racktables.org/> database. The distribution
+also includes some commands that show how to use the RackMan API.
 
 =over
 
