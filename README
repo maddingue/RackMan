@@ -5,9 +5,9 @@ NAME
 
 DESCRIPTION
 
-    Rackman is a set of Perl modules for fetching information from a
-    RackTables database RackTables. The distribution also includes
-    some commands that show how to use the RackMan API.
+    RackMan is a set of Perl modules for fetching information from a
+    RackTables database. The distribution also includes some commands
+    that show how to use the RackMan API.
 
     * rack is a program that generates the configuration files for the
     given RackObject, and talk with the corresponding devices to set
