@@ -15,7 +15,8 @@ my $builder = Module::Build->new(
     dist_author         => 'Sebastien Aperghis-Tramoni <sebastien@aperghis.net>',
     dist_version_from   => 'lib/RackMan.pm',
     script_files        => [
-        'bin/rack', 'bin/cfengine-tags', 'bin/cisco-status'
+        'bin/rack', 'bin/cfengine-tags', 'bin/cisco-status',
+        'bin/racktables-check'
     ],
 
     requires => {
