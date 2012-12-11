@@ -51,7 +51,7 @@ sub run {
     GetOptions(\%options, qw{
         help|usage|h!  man!  version|V!
         verbose|v!  config|c=s  output-path|path|O=s
-        attrs|A=s  tags|T=s  filter|F=s
+        attrs|A=s  tags|T=s  filter|F=s  class_names|class-names|N
     }) or pod2usage(0);
 
     # handle --version, --help and --man
@@ -183,7 +183,7 @@ sub process {
             and next unless @addrs;
 
         # mogrify it for Cfengine
-        $fqdn =~ s/[-.]/_/g;
+        $fqdn =~ s/[-.]/_/g if $rackman->options->{class_names};
 
 
         # to avoid conflicts, construct a mapping of each tag to its 
@@ -294,6 +294,12 @@ parameter.
 Specify a comma-separated list of tokens, defining tags and attribute
 values. This option overrides the C<[cfengine-tags]/filter> config
 parameter. See the corresponding documentation for more details.
+
+=item B<-N>, B<--class-names>
+
+Request to mogrify the host names so they are valid Cfengine class names.
+This was the default behaviour for versions of this program older than 1.05.
+This option is now needed to enable this behaviour.
 
 =back
 
