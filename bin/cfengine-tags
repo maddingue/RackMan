@@ -13,7 +13,7 @@ use RackMan::Tasks;
 
 
 $::PROGRAM = "Cfengine tags generator";
-$::VERSION = "1.05";
+$::VERSION = "1.06";
 $::COMMAND = basename($0);
 
 
@@ -298,7 +298,7 @@ parameter. See the corresponding documentation for more details.
 =item B<-N>, B<--class-names>
 
 Request to mogrify the host names so they are valid Cfengine class names.
-This was the default behaviour for versions of this program older than 1.05.
+This was the default behaviour for versions of this program older than 1.06.
 This option is now needed to enable this behaviour.
 
 =back
