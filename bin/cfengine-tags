@@ -13,7 +13,7 @@ use RackMan::Tasks;
 
 
 $::PROGRAM = "Cfengine tags generator";
-$::VERSION = "1.06";
+$::VERSION = "1.07";
 $::COMMAND = basename($0);
 
 
