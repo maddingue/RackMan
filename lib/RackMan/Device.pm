@@ -5,9 +5,19 @@ use Moose;
 use Moose::Util::TypeConstraints;
 use RackMan;
 use RackMan::Types;
+use RackMan::Utils;
 use Socket;
 use namespace::autoclean;
 
+
+
+#
+# constants
+#
+use constant {
+    DEFAULT_VIRT_IFACES     => "/(carp|lagg|vlan)\\d+/",
+    DEFAULT_MGMT_IFACES     => "/(areca|ilo|ipmi)/",
+};
 
 
 #
@@ -377,10 +387,15 @@ sub _get_ports {
 # regular_mac_addrs()
 # -----------------
 sub regular_mac_addrs {
+    my $self = shift;
+
+    my ($re, $err) = parse_regexp($self->rackman->config->val(
+        "general", "management_interfaces", DEFAULT_MGMT_IFACES));
+
     return
-        grep { $_->{name} !~ /^(?:PWR\d+|areca|ipmi|ilo)$/i }
+        grep { $_->{name} !~ /$re/ }
         grep { defined $_->{l2address} and length $_->{l2address} }
-        @{ $_[0]->ports }
+        @{ $self->ports }
 }
 
 
@@ -438,9 +453,15 @@ sub _get_ipv6addrs {
 # regular_ipv4addrs()
 # -----------------
 sub regular_ipv4addrs {
-    return map {
-        ( $_->{type} eq "regular" and $_->{iface} ne "ilo" ) ? $_ : ()
-    } @{ $_[0]->ipv4addrs }
+    my $self = shift;
+
+    my ($re, $err) = parse_regexp($self->rackman->config->val(
+        "general", "management_interfaces", DEFAULT_MGMT_IFACES));
+
+    return
+        grep { $_->{iface} !~ /$re/ }
+        grep { $_->{type} eq "regular" }
+        @{ $self->ipv4addrs }
 }
 
 
@@ -448,9 +469,31 @@ sub regular_ipv4addrs {
 # regular_ipv6addrs()
 # -----------------
 sub regular_ipv6addrs {
-    return map {
-        ( $_->{type} eq "regular" and $_->{iface} ne "ilo" ) ? $_ : ()
-    } @{ $_[0]->ipv6addrs }
+    my $self = shift;
+
+    my ($re, $err) = parse_regexp($self->rackman->config->val(
+        "general", "management_interfaces", DEFAULT_MGMT_IFACES));
+
+    return
+        grep { $_->{iface} !~ /$re/ }
+        grep { $_->{type} eq "regular" }
+        @{ $self->ipv6addrs }
+}
+
+
+#
+# physical_interfaces()
+# -------------------
+sub physical_interfaces {
+    my $self = shift;
+
+    my ($re, $err) = parse_regexp($self->rackman->config->val(
+        "general", "virtual_interfaces", DEFAULT_VIRT_IFACES));
+
+    return
+        grep { $_->{iface} !~ /$re/ }
+        grep { $_->{type} eq "regular" }
+        @{ $self->ipv4addrs }, @{ $self->ipv6addrs }
 }
 
 
@@ -845,6 +888,13 @@ C<peer_object_name> - string, peer object name
 =head2 parents
 
 Arrayref, contains the object ID of the parents
+
+
+=head2 physical_interfaces
+
+List of the IPv4 addresses of the device which are not associated
+with a virtual interface, as given by the [general]/virtual_interfaces 
+config parameter. See L<rack/"CONFIGURATION"> for more details.
 
 
 =head2 rack

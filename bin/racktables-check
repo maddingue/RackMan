@@ -292,7 +292,7 @@ sub process {
         if ($enforce_interface_match) {
             my %port = map { $_->{name} => $_ } @{ $rackdev->ports };
 
-            for my $interface (@{$rackdev->ipv4addrs}, @{$rackdev->ipv6addrs}) {
+            for my $interface ($rackdev->physical_interfaces) {
                 my $name = $interface->{iface};
 
                 push @problems,
@@ -368,7 +368,7 @@ sub property_value {
             return $rackdev->$propname->{addr}
         }
         elsif ($propname eq PROP_INTERFACES) {
-            return map $_->{iface}, $rackdev->regular_ipv4addrs
+            return map $_->{iface}, $rackdev->physical_interfaces
         }
         elsif ($propname eq PROP_IPV4ADDRS) {
             return map $_->{addr}, $rackdev->$propname

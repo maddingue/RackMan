@@ -362,6 +362,11 @@ C<mail_server> - specify the default SMTP server
 
 =item *
 
+C<management_interfaces> - specify the regular expression which matches the
+names of management interfaces. Default is C</(areca|ilo|ipmi)/>
+
+=item *
+
 C<nagios_url> - specify the URL of the Nagios web application
 
 =item *
@@ -382,6 +387,11 @@ C<racktables_url> - specify the URL of the RackTables web application
 =item *
 
 C<timezone> - specify the default timezone
+
+=item *
+
+C<virtual_interfaces> - specify the regular expression which matches the
+names of virtual interfaces. Default is C</(carp|lagg|vlan)\d+/>
 
 =back
 
