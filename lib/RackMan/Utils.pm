@@ -15,7 +15,7 @@ use constant {
 };
 
 our @ISA = qw< Exporter >;
-our @EXPORT = qw< diff_lines >;
+our @EXPORT = qw< diff_lines parse_regexp >;
 
 
 #
@@ -111,6 +111,26 @@ sub diff_lines {
 }
 
 
+#
+# parse_regexp()
+# ------------
+sub parse_regexp {
+    my ($text) = @_;
+    my $flags = "";
+
+    if ($text =~ m:^/:) {
+        $text =~ s:^/::;
+        $text =~ s:/(\w+)?$::;
+        $flags = "(?:$1)" if defined $1;
+    }
+
+    my $re = eval { qr/$flags$text/ };
+    (my $err = $@) =~ s/ at .* line \d+\.//;
+
+    return wantarray ? ($re, $err) : $re
+}
+
+
 __PACKAGE__
 
 __END__
@@ -164,6 +184,29 @@ B<Return:>
 =item *
 
 diff result (array in list context, arrayref in scalar context)
+
+=back
+
+
+=head2 parse_regexp()
+
+Parse the given string and return the corresponding Perl regexp (C<qr//>).
+
+B<Arguments:>
+
+=over
+
+=item 1. input string
+
+=back
+
+B<Return:>
+
+=over
+
+=item * in scalar context: the resulting regexp
+
+=item * in list context: the resulting regexp, parsing error
 
 =back
 

@@ -10,6 +10,7 @@ use List::MoreUtils qw< uniq >;
 use RackMan;
 use RackMan::Config;
 use RackMan::Tasks;
+use RackMan::Utils;
 use Socket;
 
 
@@ -148,14 +149,8 @@ sub process {
 
             # compile the regexp to detect errors early
             if ($enforce{operator} eq OP_REGEXP) {
-                $enforce{operand} =~ s:^/::;
-                $enforce{operand} =~ s:/(\w+)?$::;
-                my $flags = defined $1 ? "(?:$1)" : "";
-                $enforce{operand} = eval { qr/$flags$enforce{operand}/ }
-                    or do {
-                        (my $err = $@) =~ s/ at .* line \d+\.//;
-                        RackMan->error("invalid regexp: $err");
-                    };
+                ($enforce{operand}, my $err) = parse_regexp($enforce{operand});
+                RackMan->error("invalid regexp: $err") if $err;
             }
 
             # verify that the check function is actually known
