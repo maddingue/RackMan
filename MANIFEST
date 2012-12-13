@@ -10,6 +10,7 @@ bin/racktables-check
 cgi/rackapi
 cgi/rtlink
 etc/host.dhcp.conf.tmpl
+etc/host.dnsmasq.conf
 etc/host.pxe.conf.tmpl
 etc/host.kickstart.cfg.tmpl
 etc/rack.conf
