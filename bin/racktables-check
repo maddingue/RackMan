@@ -93,12 +93,6 @@ sub run {
     # read configuration file
     my $config = RackMan::Config->new(-file => $options{config});
 
-    # check for mandatory parameters
-    #RackMan->error("missing config parameter [".CONFIG_SECTION."]/path")
-    #    if not $config->val(CONFIG_SECTION, "path");
-    # check some options
-    #RackMan->error("");
-
     # instanciate the backend object
     my $rackman = RackMan->new({ options => \%options, config => $config });
 
