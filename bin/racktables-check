@@ -202,13 +202,16 @@ sub process {
         = $rackman->config->val(CONFIG_SECTION, "enforce_interface_match");
 
     # fetch the list of devices
-    my @devices
-        = RackMan::Tasks->task_list({ rackman => $rackman, type => "all" });
+    my @devices = @args
+        ? map +{ name => $_ }, @args
+        : RackMan::Tasks->task_list({ rackman => $rackman, type => "all" });
 
     DEVICE:
     for my $device (@devices) {
         next if $device->{name} eq "(null)";
-        my $rackdev = $rackman->device_by_id($device->{id});
+        my $rackdev = exists $device->{id}
+            ? $rackman->device_by_id($device->{id})
+            : $rackman->device_by_name($device->{name});
         my $type = $rackdev->object_type;
         my @problems;
 
@@ -477,6 +480,11 @@ Print the manual page of the program, then exit.
 Print the program name and version, then exit.
 
 =back
+
+=head2 Arguments
+
+The rest of the argument, if any, are used as device names to perform the
+checks upon. If none is given, process all known devices (minus the filter).
 
 
 =head1 DESCRIPTION

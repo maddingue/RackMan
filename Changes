@@ -1,5 +1,7 @@
 Release history for RackMan
 
+  - racktables-check: Allow to process on specific named devices.
+
 1.16 / 2012.12.13 / SAPER
   - racktables-check: The short version of the --format option now is -t.
   - racktables-check: Added the same --filter option than cfengine-tags.
