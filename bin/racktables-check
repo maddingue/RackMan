@@ -496,6 +496,8 @@ with the following additional definitions.
 
 =over
 
+=item *
+
 C<filter> - specify a filter; will be overridden by the C<--filter>
 option. See L<"FILTER SYNTAX"> for details and examples.
 
