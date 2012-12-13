@@ -82,7 +82,7 @@ sub run {
     Getopt::Long::Configure(qw< no_auto_abbrev no_ignore_case >);
     GetOptions(\%options, qw{
         help|usage|h!  man!  version|V!
-        verbose|v!  config|c=s  output|o=s  format|F=s
+        verbose|v!  config|c=s  output|o=s  format|t=s
     }) or pod2usage(0);
 
     # handle --version, --help and --man
@@ -389,7 +389,7 @@ racktables-check - Perform various consistency checks on RackTables objects
 Specify the path to the configuration file.
 Default to F</usr/local/etc/rack.conf>
 
-=item B<-F>, B<--format> I<json|yaml>
+=item B<-t>, B<--format> I<json|yaml>
 
 Specify the format for printing or storing the results.
 Available formats are C<json> and C<yaml>. Default is C<yaml>.

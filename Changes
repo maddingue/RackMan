@@ -1,5 +1,7 @@
 Release history for RackMan
 
+  - racktables-check: The short version of the --format option now is -t.
+
 1.15 / 2012.12.11 / SAPER
   - cfengine-tags: Added option --class-names.
   - Added bin/racktables-check to Build.PL and Makefile.PL so it is actually
