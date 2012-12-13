@@ -1,3 +1,6 @@
 .hg
+blib
 _build
+Build
+html
 .*.swp
