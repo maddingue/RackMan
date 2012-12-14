@@ -36,6 +36,7 @@ my $builder = Module::Build->new(
         'HTML::Template::Filter::TT2'   => '0.03',
         'IPC::Run',                     => 0,
         'JSON',                         => 0,
+        'JSON::XS',                     => 0,
         'List::MoreUtils',              => 0,
         'Moose'                         => '1.00',
         'MooseX::NonMoose'              => 0,
@@ -49,6 +50,7 @@ my $builder = Module::Build->new(
         'Socket'                        => 0,
         'Term::ANSIColor'               => 0,
         'YAML',                         => 0,
+        'YAML::XS',                     => 0,
         %compat_prereqs,
     },
     build_requires => {
