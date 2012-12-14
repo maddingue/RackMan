@@ -18,7 +18,8 @@ for my $command (sort keys %programs) {
     my $cmdpath = -d "blib" ? catfile("blib", "script", $command)
                             : catfile("bin", $command);
 
-    my $cmd = Test::Cmd->new(prog => $cmdpath, workdir => "");
+    my $perl = join " ", $^X, map "-I$_", @INC;
+    my $cmd = Test::Cmd->new(prog => $cmdpath, workdir => "", intereter => $perl);
     ok( $cmd, "created Test::Cmd object for $command" );
 
     # checking option --version
