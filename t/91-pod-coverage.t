@@ -19,10 +19,10 @@ all_pod_coverage_ok({
         qw< val >,              # RackMan::Config proxy method
         qw< LOCAL_CONFIG_FILE >,# RackMan::Config constant
         qw< AF_INET6 >,         # RackMan::Device constant
-        qw< DEFAULT_FORMATS >,  # RackMan::Device::* constant
+        qr/^DEFAULT_\w+$/,      # common case of default values
 
         # RackMan::Device::* and RackMan::Format::* constants
-        qw< CONFIG_SECTION DEFAULT_PATH >,
+        qw< CONFIG_SECTION >,
 
         # RackMan::Device::PDU::APC_RackPDU constants
         qw< CONFIG_FILENAME CONFIG_SECTION DIFF_CONTEXT EMPTY_VALUE
