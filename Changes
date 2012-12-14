@@ -6,6 +6,7 @@ Release history for RackMan
     Rewrote regular_mac_addrs(), regular_ipv4addrs(), regular_ipv6addrs()
     so the names to filter out can be configured using the parameters
     [general]/management_interfaces and [general]/virtual_interfaces.
+  - Trying to fix some test failures that show up in CPAN Testers.
   - Added a few more tests to t/50-rackman-scm.t
 
 1.16 / 2012.12.13 / SAPER
