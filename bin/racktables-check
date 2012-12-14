@@ -15,7 +15,7 @@ use Socket;
 
 
 $::PROGRAM = "RackTables consistency check";
-$::VERSION = "1.01";
+$::VERSION = "1.02";
 $::COMMAND = basename($0);
 
 
