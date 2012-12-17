@@ -48,8 +48,20 @@ SKIP: {
 
     # auto-configure Git so it doesn't whine about that
     if (not `git config --global user.name`) {
-        my ($login, $name) = (getpwuid($<))[0,6];
-        my $host = do { require Sys::Hostname; Sys::Hostname::hostname() };
+        my ($login, $name);
+        my $host = eval { require Sys::Hostname; Sys::Hostname::hostname() };
+
+        if (eval { eval { require Win32; 1 } }) {
+            $login = Win32::LoginName();
+        }
+        else {
+            ($login, $name) = eval { (getpwuid($<))[0,6] };
+        }
+
+        $login ||= "dummy";
+        $name  ||= $login;
+        $host  ||= "localhost";
+
         system qw< git config --global user.name >, $name;
         system qw< git config --global user.email >, "$login\@$host";
     }
