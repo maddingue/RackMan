@@ -1,6 +1,8 @@
 Release history for RackMan
 
   - Added missing prereqs.
+  - Modified t/01-programs.t so it only execute the tests in environments where
+    Test::Cmd can find and load the required modules.
   - Fixed t/50-rackman-scm.t so it (hopefully) passes on Win32.
   - Prevent errors in Test::Kwalitee from making the tests fail.
 
