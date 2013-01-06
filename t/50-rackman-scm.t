@@ -95,7 +95,7 @@ SKIP: {
 
     # check that the commit really succeeded
     chdir $path;
-    my $out = `git log $file`;
+    my $out = `git log -- $file`;
     like $out, qr/added $file for great justice/m,
         "check that the commit succeeded with git log";
     chdir "../../..";
