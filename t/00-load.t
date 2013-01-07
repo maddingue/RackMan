@@ -32,8 +32,21 @@ my @modules = qw<
     RackTables::Types
 >;
 
-plan tests => ~~@modules;
+my @commands = qw<
+    cfengine-tags
+    cisco-status
+    rack
+    racktables-check
+>;
+
+plan tests => @modules + @commands;
 
 use_ok($_) or print "Bail out!\n" for @modules;
+
+for my $command (@commands) {
+    my $path = "bin/$command";
+    (my $name = $command) =~ s/\W/_/g;
+    ok eval "package $name; require '$path'; 1", "check $path" or diag $@;
+}
 
 diag( "Testing RackMan $RackMan::VERSION, Perl $], $^X" );
