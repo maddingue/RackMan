@@ -1,5 +1,6 @@
 Release history for RackMan
 
+1.18 / 2013.01.07 / SAPER
   - Added missing prereqs.
   - Modified t/00-load.t to compile check the commands.
   - Modified t/01-programs.t so it only execute the tests in environments where

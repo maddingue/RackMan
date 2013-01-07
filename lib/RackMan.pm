@@ -5,7 +5,7 @@ use Term::ANSIColor qw< :constants >;
 use namespace::autoclean;
 
 
-our $VERSION = "1.17";
+our $VERSION = "1.18";
 our $STATUS  = 0;
 $::COMMAND ||= __PACKAGE__;
 
