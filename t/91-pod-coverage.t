@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Test::More;
 
+plan skip_all => "author tests" unless $ENV{AUTHOR_TESTING};
+
 # Ensure a recent version of Test::Pod::Coverage
 plan skip_all => "Test::Pod::Coverage 1.08 required for testing POD coverage"
     unless eval "use Test::Pod::Coverage 1.08; 1";
@@ -22,7 +24,7 @@ all_pod_coverage_ok({
         qr/^DEFAULT_\w+$/,      # common case of default values
 
         # RackMan::Device::* and RackMan::Format::* constants
-        qw< CONFIG_SECTION >,
+        qw< CONFIG_SECTION HW_ROLES SERIAL_SPEED >,
 
         # RackMan::Device::PDU::APC_RackPDU constants
         qw< CONFIG_FILENAME CONFIG_SECTION DIFF_CONTEXT EMPTY_VALUE

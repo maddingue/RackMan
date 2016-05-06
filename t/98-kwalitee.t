@@ -2,6 +2,8 @@
 use strict;
 use Test::More;
 
+plan skip_all => "author tests" unless $ENV{AUTHOR_TESTING};
+
 plan skip_all => "Test::Kwalitee required for checking distribution"
     unless eval "use Test::Kwalitee; 1";
 

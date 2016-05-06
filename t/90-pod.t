@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Test::More;
 
+plan skip_all => "author tests" unless $ENV{AUTHOR_TESTING};
+
 # Ensure a recent version of Test::Pod
 plan skip_all => "Test::Pod 1.22 required for testing POD"
     unless eval "use Test::Pod 1.22; 1";

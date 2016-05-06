@@ -5,6 +5,9 @@ Release history for RackMan
   [Documentation]
   - Added SUPPORT and LICENSE sections.
 
+  [Tests]
+  - Make sure author tests are only executed when AUTHOR_TESTING=1
+
   [Distribution]
   - Added LICENSE file
 
