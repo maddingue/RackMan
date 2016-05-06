@@ -11,6 +11,7 @@ Release history for RackMan
 
   [Tests]
   - Make sure author tests are only executed when AUTHOR_TESTING=1
+  - Adapt t/98-kwalitee.t to the new Test::Kwalitee API.
 
   [Distribution]
   - Added LICENSE file
