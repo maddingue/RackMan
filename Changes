@@ -1,5 +1,10 @@
 Release history for RackMan
 
+(next)
+
+  [Documentation]
+  - Added SUPPORT and LICENSE sections.
+
 1.18 / 2013.01.07 / SAPER
   - Added missing prereqs.
   - Modified t/00-load.t to compile check the commands.

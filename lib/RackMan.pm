@@ -331,6 +331,48 @@ Class method to get the return status of the program.
 Class method to print a warning.
 
 
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc Sys::Syslog
+
+You can also look for information at:
+
+=over
+
+=item * MetaCPAN
+
+L<https://metacpan.org/release/RackMan>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/RackMan/>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/RackMan>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/RackMan>
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/Dist/Display.html?Queue=RackMan>
+
+=back
+
+The source code is available on Git Hub:
+L<https://github.com/maddingue/RackMan/>
+
+=head1 LICENSE
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 3 or
+later: L<http://www.fsf.org/licensing/licenses/gpl.txt>
+
+
 =head1 AUTHOR
 
 Sebastien Aperghis-Tramoni (sebastien@aperghis.net)
