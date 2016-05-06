@@ -1,5 +1,6 @@
 package RackMan::Tasks;
 
+use Module::Runtime;
 use Moose::Role;
 use RackMan;
 use RackMan::Types;
@@ -249,7 +250,7 @@ sub task_write {
 
         # load the module
         my $module = "RackMan::Format::$format";
-        if (not eval { Class::MOP::load_class($module) }) {
+        if (not eval { Module::Runtime::require_module($module) }) {
             print BOLD(RED(" -- failed")), "\n" if $verbose;
             (my $error = $@) =~ s/INC \(.+$/INC/sm;
             RackMan->warning("can't load $module: $error");

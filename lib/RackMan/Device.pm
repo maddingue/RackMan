@@ -1,6 +1,7 @@
 package RackMan::Device;
 
 use Carp;
+use Module::Runtime;
 use Moose;
 use Moose::Util::TypeConstraints;
 use RackMan;
@@ -204,7 +205,7 @@ sub BUILD {
         # determine the type of device and apply the corresponding 
         # role to the object
         my $type_role = __PACKAGE__."::".$self->object_type;
-        eval { Class::MOP::load_class($type_role) }
+        eval { Module::Runtime::require_module($type_role) }
             or RackMan->error("can't load $type_role: $@");
         $type_role->meta->apply($self);
 

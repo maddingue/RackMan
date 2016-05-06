@@ -2,6 +2,10 @@ Release history for RackMan
 
 (next)
 
+  [Internal changes]
+  - CPAN RT #90914: use Module::Runtime::require_module instead of
+  Class::MOP::load_class
+
   [Documentation]
   - Added SUPPORT and LICENSE sections.
 

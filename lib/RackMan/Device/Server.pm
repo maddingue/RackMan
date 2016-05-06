@@ -1,5 +1,6 @@
 package RackMan::Device::Server;
 
+use Module::Runtime;
 use Moose::Role;
 use RackMan;
 use namespace::autoclean;
@@ -54,7 +55,7 @@ sub specialise {
         # load and apply the role to the object
         $hw_role = __PACKAGE__."::$hw_role";
         $self->class($hw_role);
-        eval { Class::MOP::load_class($hw_role) }
+        eval { Module::Runtime::require_module($hw_role) }
             or RackMan->error("can't load $hw_role: $@");
         $hw_role->meta->apply($self);
     }
